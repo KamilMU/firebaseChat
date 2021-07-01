@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase/app';
+import { sendMessage } from '../services/chatService.js';
 
 /**
    * Renders a <SendMessageForm /> component
@@ -8,19 +8,14 @@ import firebase from 'firebase/app';
 function SendMessageForm() {
   const [formValue, setFormValue] = React.useState('');
 
-  const sendMessage = async (e) => {
+  function onSendMessage(e) {
     e.preventDefault();
-
-    await firebase.firestore().collection('messages').doc().set({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-
+    sendMessage(formValue);
     setFormValue('');
   }
 
   return (
-    <form className="send-message-form" onSubmit={sendMessage}>
+    <form className="send-message-form" onSubmit={onSendMessage}>
       <input
         value={formValue}
         onChange={(e) => setFormValue(e.target.value)}
