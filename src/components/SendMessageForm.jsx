@@ -11,19 +11,27 @@ function SendMessageForm() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    await firebase.firestore().collection('messages').add({
+    await firebase.firestore().collection('messages').doc().set({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
     setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
     <form className="send-message-form" onSubmit={sendMessage}>
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Say something" />
-      <button type="submit" disabled={!formValue}>send</button>
+      <input
+        value={formValue}
+        onChange={(e) => setFormValue(e.target.value)}
+        placeholder="Say something"
+        autoFocus
+      />
+      <button
+        type="submit"
+        disabled={!formValue}>
+        send
+      </button>
     </form>
   )
 }

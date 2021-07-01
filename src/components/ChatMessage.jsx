@@ -7,12 +7,12 @@ import React from 'react';
 */
 
 export default function ChatMessage(props) {
-  const { user, text, uid, photoURL, createdAt } = props.message;
+  const {text, photoURL, createdAt } = props.message;
 
   return (
     <div className="message">
       <div>
-        <img src={photoURL || 'https://i.imgur.com/rFbS5ms.png'} alt="{user}'s pfp" />
+        <img src={photoURL || 'https://i.imgur.com/T0pqiNy.png'} alt="" />
       </div>
       <div>
         <p>{text}</p>

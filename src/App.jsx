@@ -11,18 +11,22 @@ function App() {
   const [messages, setMessages] = React.useState();
 
   React.useEffect(() => {
-    return db.collection('messages').onSnapshot((snapshot) => {
+    return db.collection('messages').orderBy('createdAt').onSnapshot((snapshot) => {
+
       const postData = [];
       snapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }));
-
+      console.log(snapshot, "snapshot")
       setMessages(postData);
     });
   }, []);
 
   return (
     <div className="app">
+      <header>
+        <div>Chat🔥🔥🔥</div>
+      </header>
       <div className="messages">
-        {messages && messages.map((msg, index) => (
+        {messages && messages.map((msg) => (
           <ChatMessage key={msg.id} message={msg} />
         ))}
       </div>
@@ -31,4 +35,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
