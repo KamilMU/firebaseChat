@@ -22,11 +22,18 @@ body {
 .app {
   margin: auto;
   background-color: rgb(255, 255, 255);
+
+  @media (max-width: 548px) {
+    width: 80vw;
+  }
+
+  @media (min-width: 549px) {
+    width: 40vw;  
+  }
 }
 
 .messages {
-  width: 550px;
-  height: 75vh;
+  height: 65vh;
   overflow-y: scroll;
   padding: 5px;
 
@@ -69,7 +76,8 @@ body {
   button {
     width: 20%;
     cursor: pointer;
-    background-color: black;
+    background-color: rgb(56, 73, 102);
+    font-weight: bold;
     border: none;
     color: white;
 
